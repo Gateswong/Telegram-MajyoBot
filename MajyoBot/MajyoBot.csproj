@@ -8,5 +8,6 @@
   <ItemGroup>
     <Folder Include="Feature\" />
     <Folder Include="Feature\Roll\" />
+    <Folder Include="MessageHandler\" />
   </ItemGroup>
 </Project>

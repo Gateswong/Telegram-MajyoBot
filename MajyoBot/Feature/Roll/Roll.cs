@@ -7,7 +7,8 @@ namespace MajyoBot.Feature.Roll
     {
         public bool IsNumbersTooLarge { get; private set; } = false;
 
-        public const int MAX_DICE_RESULT_COUNT = 20;
+        public static int MAX_DICE_RESULT_COUNT = 20;
+        public static int MAX_DICE_COUNT = 10000;
 
         private List<BigInteger> diceResults;
         public List<BigInteger> DiceResults
@@ -45,6 +46,11 @@ namespace MajyoBot.Feature.Roll
 
         private void PerformRoll() 
         {
+            if (Number > MAX_DICE_COUNT) 
+            {
+                throw new TooManyDicesException(Number);
+            }
+
             RollResult = Add;
 
             Random random = new Random();

@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MajyoBot", "MajyoBot\MajyoBot.csproj", "{758D7460-EFB4-4EAC-9999-95C0C51B5CCA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{758D7460-EFB4-4EAC-9999-95C0C51B5CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{758D7460-EFB4-4EAC-9999-95C0C51B5CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{758D7460-EFB4-4EAC-9999-95C0C51B5CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{758D7460-EFB4-4EAC-9999-95C0C51B5CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

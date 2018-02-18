@@ -16,7 +16,7 @@ namespace MajyoBot.Feature.Roll
         {
             get
             {
-                return $@"{number} exceeded maximum dice limit {Roll.MAX_DICE_COUNT}!";
+                return $@"唔…… {number}个太多了啦！我最多只有{Roll.MAX_DICE_COUNT}个骰子啦!";
             }
         }
     }

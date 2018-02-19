@@ -286,3 +286,8 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+# Ignore config files.
+MajyoBot/development.ini
+MajyoBot/testing.ini
+MajyoBot/production.ini

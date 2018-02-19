@@ -55,7 +55,7 @@ namespace MajyoBot.MessageHandler.Currency
 
             from = match.Groups["from"].Value;
             to = match.Groups["to"].Value;
-            amount = match.Groups["amount"].Success ? decimal.Parse(match.Groups["amount"].Value) : 0m;
+            amount = match.Groups["amount"].Success ? decimal.Parse(match.Groups["amount"].Value) : 1m;
             return true;
         }
 
@@ -83,7 +83,7 @@ namespace MajyoBot.MessageHandler.Currency
         {
             if (message.Type != Telegram.Bot.Types.Enums.MessageType.TextMessage) { return false; }
 
-            return validCommands.Contains(message.Text.Split(" ").FirstOrDefault()?.TrimStart('/'));
+            return validCommands.Contains(message.Text.Split(" ").FirstOrDefault());
         }
 
         static readonly List<string> validCommands = new List<string>()

@@ -8,6 +8,7 @@ using MajyoBot.Utility;
 using MajyoBot.MessageHandler;
 using System.Threading;
 using System.Text;
+using MajyoBot.MessageHandler.Currency;
 
 namespace MajyoBot
 {
@@ -35,8 +36,11 @@ namespace MajyoBot
 
         static void InitMessageHandlers()
         {
-            messageHandlers = new List<IMessageHandler>();        
-            messageHandlers.Add(new RollHandler());
+            messageHandlers = new List<IMessageHandler>
+            {
+                new RollHandler(),
+                new CurrencyHandler(),
+            };
         }
 
         static async void Bot_OnMessage(object sender, Telegram.Bot.Args.MessageEventArgs e)

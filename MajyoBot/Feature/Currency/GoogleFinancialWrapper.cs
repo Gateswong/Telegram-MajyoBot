@@ -6,26 +6,22 @@ namespace MajyoBot.Feature.Currency
 {
     public class GoogleFinancialWrapper
     {
-        public GoogleFinancialWrapper()
-        {
-        }
-
-        private static Dictionary<string, string> CurrencyAlias = new Dictionary<string, string>
+        readonly static Dictionary<string, string> CurrencyAlias = new Dictionary<string, string>
         {
             {"rmb", "cny" },
         };
 
-        public string ConvertUri(string from, string to, decimal amount=1) 
+        string ConvertUri(string from, string to, decimal amount = 1)
         {
             return $@"https://finance.google.com/finance/converter?from={from.ToLower()}&to={to.ToLower()}&a={amount}";
         }
 
-        public string GraphUri(string from, string to) 
+        string GraphUri(string from, string to)
         {
             return $@"https://www.google.com/finance/chart?q=CURRENCY:{from.ToUpper()}{to.ToUpper()}&tkr=1&p=5Y";
         }
 
-        public string Convert(string from, string to, decimal amount=1) 
+        public string Convert(string from, string to, decimal amount = 1)
         {
             if (CurrencyAlias.ContainsKey(from.ToLower()))
             {
@@ -42,5 +38,7 @@ namespace MajyoBot.Feature.Currency
             var node = htmlDoc.DocumentNode.SelectSingleNode("//div[@id='currency_converter_result']");
             return node.InnerText.Trim();
         }
+
+        public static GoogleFinancialWrapper Default { get; private set; } = new GoogleFinancialWrapper();
     }
 }

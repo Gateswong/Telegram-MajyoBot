@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
 using MajyoBot.Feature.Roll;
+using MajyoBot.Utility;
 using Microsoft.Extensions.CommandLineUtils;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -19,11 +20,9 @@ namespace MajyoBot.MessageHandler.Roll
         {
             if (!IsValidMessage(message)) { return false; }
 
-            string messageBody = new string(message.Text
-                .Skip(message.Text.IndexOf(" ", StringComparison.Ordinal) + 1)
-                .ToArray()).Trim();
+            string messageBody = message.Text.TrimFirstWord(); 
 
-            if (string.IsNullOrEmpty(messageBody)) {
+            if (string.IsNullOrWhiteSpace(messageBody)) {
                 ShowHelpText(bot, message);
                 return true;
             }
@@ -170,7 +169,7 @@ namespace MajyoBot.MessageHandler.Roll
             );
         }
 
-        static List<string> validCommands = new List<string>() 
+        static readonly List<string> validCommands = new List<string>() 
         {
             "/r",
             "/roll",

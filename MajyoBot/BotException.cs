@@ -18,9 +18,10 @@ namespace MajyoBot
                 StringBuilder builder = new StringBuilder();
                 builder.AppendLine(Message);
                 builder.AppendLine();
-                builder.AppendLine("------");
-                builder.AppendLine();
+                builder.AppendLine($@"### Stacktrace ###");
+                builder.AppendLine("```");
                 builder.AppendLine(ToString());
+                builder.AppendLine("```");
                 return builder.ToString();
             }
         }

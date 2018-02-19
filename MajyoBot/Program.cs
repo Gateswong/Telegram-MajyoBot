@@ -43,16 +43,25 @@ namespace MajyoBot
         {
             try 
             {
+                bool isCommandHandled = true;
                 foreach (var handler in messageHandlers) 
                 {
-                    if (handler.HandleMessage(bot, e.Message)) { break; }
+                    isCommandHandled = handler.HandleMessage(bot, e.Message);
+                    if (isCommandHandled) { break; }
+                }
+                
+                if (!isCommandHandled)
+                {
+                    throw new InvalidCommandException(
+                        e.Message.Text.Split(' ', '\n')[0].TrimStart('/'));
                 }
             }
             catch (BotException ex) 
             {
                 await bot.SendTextMessageAsync(
                     e.Message.Chat.Id,
-                    ex.Message,
+                    AppConfiguration.Behavior.ShowFullError ? ex.DiagnoseMessage : ex.Message,
+                    Telegram.Bot.Types.Enums.ParseMode.Markdown,
                     replyToMessageId: e.Message.MessageId
                 );
             }
@@ -63,14 +72,23 @@ namespace MajyoBot
                 if (AppConfiguration.Behavior.ShowFullError) 
                 {
                     unexpectedErrorMessageBuilder.AppendLine();
-                    unexpectedErrorMessageBuilder.AppendLine($@"------");
-                    unexpectedErrorMessageBuilder.AppendLine();
+                    if (e.Message.Type == Telegram.Bot.Types.Enums.MessageType.TextMessage)
+                    {
+                        unexpectedErrorMessageBuilder.AppendLine($@"### Original Text ###");
+                        unexpectedErrorMessageBuilder.AppendLine();
+                        unexpectedErrorMessageBuilder.AppendLine(e.Message.Text);
+                        unexpectedErrorMessageBuilder.AppendLine();
+                    }
+                    unexpectedErrorMessageBuilder.AppendLine($@"### Stacktrace ###");
+                    unexpectedErrorMessageBuilder.AppendLine("```");
                     unexpectedErrorMessageBuilder.AppendLine(ex.ToString());
+                    unexpectedErrorMessageBuilder.AppendLine("```");
                 }
 
                 await bot.SendTextMessageAsync(
                     e.Message.Chat.Id,
                     unexpectedErrorMessageBuilder.ToString(),
+                    Telegram.Bot.Types.Enums.ParseMode.Markdown,
                     replyToMessageId: e.Message.MessageId
                 );
             }

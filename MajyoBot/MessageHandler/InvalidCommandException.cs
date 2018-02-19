@@ -14,7 +14,7 @@ namespace MajyoBot.MessageHandler
         {
             get
             {
-                return $@"{Command}……唔……我不能理解你的意思呢";
+                return $@"唔……我不能理解""{Command}""的意思呢";
             }
         }
     }

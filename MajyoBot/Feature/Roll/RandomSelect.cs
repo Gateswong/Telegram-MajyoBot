@@ -7,6 +7,11 @@ namespace MajyoBot.Feature.Roll
     {
         public RandomSelect(string title, IReadOnlyList<string> choices)
         {
+            if (choices.Count == 0)
+            {
+                throw new NoChoiceException();
+            }
+
             Title = title;
             Choices = choices;
         }

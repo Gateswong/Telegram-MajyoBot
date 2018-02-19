@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace MajyoBot.Feature.Roll
 {
-    public class TooManyDicesException : ArgumentException
+    public class TooManyDicesException : BotException
     {
         public TooManyDicesException(BigInteger number)
         {

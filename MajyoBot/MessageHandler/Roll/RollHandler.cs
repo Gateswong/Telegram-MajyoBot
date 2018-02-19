@@ -19,8 +19,9 @@ namespace MajyoBot.MessageHandler.Roll
         {
             if (!IsValidMessage(message)) { return false; }
 
-            string messageBody = message.Text.Substring(
-                message.Text.IndexOf(" ", StringComparison.Ordinal)).Trim();
+            string messageBody = new string(message.Text
+                .Skip(message.Text.IndexOf(" ", StringComparison.Ordinal) + 1)
+                .ToArray()).Trim();
 
             if (string.IsNullOrEmpty(messageBody)) {
                 ShowHelpText(bot, message);
@@ -38,6 +39,7 @@ namespace MajyoBot.MessageHandler.Roll
                 return true;
             }
 
+            ShowHelpText(bot, message);
             return true;
         }
 
@@ -64,6 +66,7 @@ namespace MajyoBot.MessageHandler.Roll
             bot.SendTextMessageAsync(
                 message.Chat.Id,
                 RollDicesMessage(roll),
+                Telegram.Bot.Types.Enums.ParseMode.Markdown,
                 replyToMessageId: message.MessageId
             );
 
@@ -97,6 +100,7 @@ namespace MajyoBot.MessageHandler.Roll
             bot.SendTextMessageAsync(
                 message.Chat.Id,
                 RollSelectionMessage(randomSelect),
+                Telegram.Bot.Types.Enums.ParseMode.Markdown,
                 replyToMessageId: message.MessageId
             );
 
@@ -106,20 +110,17 @@ namespace MajyoBot.MessageHandler.Roll
         private string RollSelectionMessage(RandomSelect randomSelect)
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine($@"骰子骰子咕噜转…………");
             if (!string.IsNullOrWhiteSpace(randomSelect.Title))
             {
                 builder.AppendLine(randomSelect.Title);
             }
-            else 
+            else
             {
-                builder.Append($@"结果是：""");
+                builder.AppendLine($@"骰子骰子咕噜转…………");
             }
+            builder.Append($@"结果是：""");
             builder.Append($@"{randomSelect.Next()}");
-            if (!string.IsNullOrWhiteSpace(randomSelect.Title)) 
-            {
-                builder.AppendLine();
-            }
+            builder.Append(@"""");
 
             return builder.ToString();
         }

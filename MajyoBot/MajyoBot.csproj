@@ -6,8 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Feature\" />
-    <Folder Include="Feature\Roll\" />
     <Folder Include="MessageHandler\" />
     <Folder Include="Feature\Currency\" />
     <Folder Include="Feature\Translation\" />

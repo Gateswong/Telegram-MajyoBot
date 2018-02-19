@@ -19,19 +19,5 @@ namespace MajyoBot.Feature.Translation
             var result = client.TranslateText(text, targetLanguage, sourceLanguage);
             return result.TranslatedText;
         }
-
-        private static GoogleCloudTranslationWrapper _Default;
-        public static GoogleCloudTranslationWrapper Default 
-        {
-            get 
-            {
-                if (_Default == null) 
-                {
-                    _Default = new GoogleCloudTranslationWrapper();                    
-                }
-
-                return Default;
-            }
-        }
     }
 }

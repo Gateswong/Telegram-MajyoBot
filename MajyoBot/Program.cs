@@ -9,6 +9,7 @@ using MajyoBot.MessageHandler;
 using System.Threading;
 using System.Text;
 using MajyoBot.MessageHandler.Currency;
+using MajyoBot.MessageHandler.Buzz;
 
 namespace MajyoBot
 {
@@ -40,6 +41,7 @@ namespace MajyoBot
             {
                 new RollHandler(),
                 new CurrencyHandler(),
+                new KeywordReplyHandler(),
             };
         }
 

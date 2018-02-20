@@ -21,6 +21,18 @@ namespace MajyoBot.MessageHandler.Buzz
                 return true;
             }
 
+
+            if (message.Text.Contains("傲娇") && message.Text.Contains("群主"))
+            {
+                bot.SendStickerAsync(
+                    message.Chat.Id,
+                    new FileToSend("CAADAQADCgEAAtYvmwYs_jIMzgABDtUC"),
+                    replyToMessageId: message.MessageId
+                );
+
+                return true;
+            }
+
             return false;
         }
     }

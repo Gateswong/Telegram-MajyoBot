@@ -291,3 +291,4 @@ __pycache__/
 MajyoBot/development.ini
 MajyoBot/testing.ini
 MajyoBot/production.ini
+MajyoBot/credential.json

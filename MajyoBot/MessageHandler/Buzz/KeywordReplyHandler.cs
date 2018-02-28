@@ -10,6 +10,8 @@ namespace MajyoBot.MessageHandler.Buzz
 
         public bool HandleMessage(TelegramBotClient bot, Message message)
         {
+            if (message.Type != Telegram.Bot.Types.Enums.MessageType.TextMessage) { return false; }
+
             if (message.Text.Contains("傲娇") && message.Text.ToLower().Contains("bot")) 
             {
                 bot.SendStickerAsync(

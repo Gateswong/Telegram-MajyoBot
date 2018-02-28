@@ -56,7 +56,9 @@ namespace MajyoBot
                     if (isCommandHandled) { break; }
                 }
                 
-                if (!isCommandHandled)
+                if (!isCommandHandled 
+                    && e.Message.Chat.Type == Telegram.Bot.Types.Enums.ChatType.Private 
+                    && e.Message.Type == Telegram.Bot.Types.Enums.MessageType.TextMessage)
                 {
                     throw new InvalidCommandException(
                         e.Message.Text.Split(' ', '\n')[0].TrimStart('/'));
